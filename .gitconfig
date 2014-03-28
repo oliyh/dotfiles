@@ -1,6 +1,6 @@
 [user]
-	name = Martin Trojer
-	email = martin.trojer@gmail.com
+	name = Oliver Hine
+	email = git@oliy.co.uk
 [push]
 	default = simple
 [color]
@@ -9,6 +9,4 @@
 	sslVerify = false
  	postBuffer = 524288000
 [github]
-	user = martintrojer
-[github "encrypted"]
-	oauth-token = U2FsdGVkX1/brDdCscmcyw11kQplKWfvzy84rXaEHXX3vTvkYUvAXeXTho1QjpViweVtqxbT76ymh6/mHIL/6g==
+	user = oliyh

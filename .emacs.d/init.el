@@ -391,6 +391,9 @@
 (setq scheme-program-name "csi")
 ;;(setq scheme-program-name "petite")
 
+;; Python
+(setq python-shell-interpreter "python3")
+
 ;; =============================================================
 ;; Settings
 

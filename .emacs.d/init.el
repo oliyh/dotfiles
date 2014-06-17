@@ -449,26 +449,26 @@
     (indent-region begin end))
   (message "Ah, much better!"))
 
-;; =============================================================
-;; OSX
+(defun current-nrepl-server-buffer ()
+  (let ((nrepl-server-buf (replace-regexp-in-string "connection" "server" (nrepl-current-connection-buffer))))
+    (when nrepl-server-buf
+      (get-buffer nrepl-server-buf))))
 
-;; Allow hash to be entered
-(when (eq 'darwin system-type)
+(defun clear-buffers ()
+  (interactive)
 
-  (global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
+  (cider-find-and-clear-repl-buffer)
 
-  (maybe-install-and-require 'exec-path-from-shell)
-  (exec-path-from-shell-initialize)
+  (with-current-buffer (current-nrepl-server-buffer)
+    (kill-region (point-min) (point-max))))
 
-  (defun copy-from-osx ()
-    (shell-command-to-string "pbpaste"))
+(defun clj-reset ()
+  (interactive)
+  (with-current-buffer "user.clj"
+    (cider-load-current-buffer))
+  (with-current-buffer (cider-current-repl-buffer)
+    (goto-char (point-max))
+    (insert "(reset)")
+    (cider-repl-return)))
 
-	(defun paste-to-osx (text &optional push)
-    (let ((process-connection-type nil))
-      (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
-        (process-send-string proc text)
-        (process-send-eof proc))))
-
-  (unless (getenv "TMUX")
-    (setq interprogram-cut-function 'paste-to-osx)
-    (setq interprogram-paste-function 'copy-from-osx)))
+(global-set-key (kbd "C-c r") 'clj-reset)

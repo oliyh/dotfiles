@@ -189,6 +189,9 @@
 (maybe-install-and-require 'inf-ruby)
 (add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
 
+;; mustache-mode
+(maybe-install-and-require 'mustache)
+
 ;; Magit
 (maybe-install-and-require 'magit)
 (global-set-key (kbd "C-c C-g") 'magit-status)

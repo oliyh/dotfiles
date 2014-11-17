@@ -10,3 +10,5 @@
  	postBuffer = 524288000
 [github]
 	user = oliyh
+[core]
+  autocrlf = false

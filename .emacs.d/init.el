@@ -143,6 +143,7 @@
 (setq cider-repl-history-size 3000)
 (add-hook 'cider-mode-hook #'eldoc-mode)
 (setq cider-show-error-buffer 'except-in-repl)
+(setq cider-prompt-for-symbol nil)
 
 ;; clj-refactor
 (maybe-install-and-require 'clj-refactor)

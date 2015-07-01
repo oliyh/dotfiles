@@ -34,6 +34,7 @@
   (require p))
 
 (maybe-install-and-require 'diminish)
+(global-set-key (kbd "C-x p") 'previous-multiframe-window)
 
 ;; =============================================================
 ;; Major modes

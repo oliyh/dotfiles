@@ -75,6 +75,10 @@
           '(lambda ()
              (define-key inf-clojure-mode-map "\C-cl" 'erase-inf-buffer)))
 
+(custom-set-variables
+ '(cider-cljs-repl
+   "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))"))
+
 ;; Golang
 (maybe-install-and-require 'go-mode)
 (maybe-install-and-require 'go-eldoc)

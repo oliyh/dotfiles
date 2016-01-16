@@ -151,7 +151,7 @@
   (add-hook 'emacs-lisp-mode-hook 'eldoc-mode))
 
 ;; mustache-mode
-(maybe-install-and-require 'mustache)
+(use-package mustache)
 
 ;; Magit
 (use-package magit
@@ -495,36 +495,5 @@
       (backward-char) (insert "\n"))
     (indent-region begin end))
   (message "Ah, much better!"))
-
-(defun current-nrepl-server-buffer ()
-  (let ((nrepl-server-buf (replace-regexp-in-string "connection" "server" (nrepl-current-connection-buffer))))
-    (when nrepl-server-buf
-      (get-buffer nrepl-server-buf))))
-
-;; Allow hash to be entered
-(when (eq 'darwin system-type)
-
-  (global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
-
-  (use-package exec-path-from-shell
-    :ensure t
-    :pin melpa-stable
-    :config
-    (exec-path-from-shell-initialize))
-
-  (cider-find-and-clear-repl-buffer)
-
-  (with-current-buffer (current-nrepl-server-buffer)
-    (kill-region (point-min) (point-max))))
-
-  (unless (getenv "TMUX")
-    (setq interprogram-cut-function 'paste-to-osx)
-    (setq interprogram-paste-function 'copy-from-osx)))
-
-(defun osio ()
-  (interactive)
-  (setenv "OSIO_LOCAL"
-          (s-trim
-           (shell-command-to-string "docker-machine ip osio"))))
 
 ;;; init.el ends here

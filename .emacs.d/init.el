@@ -119,12 +119,6 @@
   :defer t
   :pin melpa-stable)
 
-;; Mustache
-(use-package mustache-mode
-  :ensure t
-  :defer t
-  :pin melpa-stable)
-
 ;; Dired
 (use-package dired
   :config
@@ -149,9 +143,6 @@
   :config
   (add-hook 'emacs-lisp-mode-hook 'eldoc-mode))
 
-;; mustache-mode
-(use-package mustache)
-
 ;; Magit
 (use-package magit
   :ensure t
@@ -174,6 +165,20 @@
   (add-hook 'scheme-mode-hook 'paredit-mode)
   (add-hook 'cider-repl-mode-hook 'paredit-mode)
   (add-hook 'clojure-mode-hook 'paredit-mode))
+
+;; smex
+(use-package smex
+  :ensure t
+  :pin melpa-stable
+  :bind (("M-x" . smex)
+         ("M-X" . smex-major-mode-commands)
+         ("C-c C-c M-x" . execute-extended-command))
+  :config (smex-initialize))
+
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+
 
 ;; Smartparens
 (use-package smartparens

@@ -69,11 +69,34 @@
   (setq cider-repl-wrap-history t)
   (setq cider-repl-history-size 3000)
   (setq cider-show-error-buffer 'except-in-repl)
+  (setq cider-repl-use-pretty-printing t)
+  (setq cider-prompt-for-symbol nil)
+  (setq cider-save-file-on-load t)
   (add-hook 'cider-mode-hook #'eldoc-mode))
 
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(cider-cljs-repl
-   "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))"))
+   "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
+ '(package-selected-packages
+   (quote
+    (flatland-theme clj-refactor align-cljlet buffer-move jvm-mode avy inf-ruby git-gutter kaesar yagist expand-region multiple-cursors browse-kill-ring undo-tree golden-ratio idle-highlight-mode flycheck ag yasnippet projectile company smartparens smex paredit magit dockerfile-mode yaml-mode markdown-mode haskell-mode go-eldoc go-mode cider clojure-mode use-package)))
+ '(safe-local-variable-values
+   (quote
+    ((cider-cljs-repl-types
+      (edge "(do (require 'dev-extras) ((resolve 'dev-extras/cljs-repl)))"))
+     (cider-repl-init-code "(dev)")
+     (cider-ns-refresh-after-fn . "dev-extras/resume")
+     (cider-ns-refresh-before-fn . "dev-extras/suspend")
+     (cider-preferred-build-tool . "lein")
+     (eval define-clojure-indent
+           (snippet
+            (quote defun))
+           (template
+            (quote defun)))))))
 
 ;; Go lang
 (use-package go-mode
@@ -294,9 +317,9 @@
 (use-package multiple-cursors
   :ensure t
   :pin melpa-stable
-  :bind (("C-c ." . mc/mark-next-like-this)
-         ("C-c ," . mc/mark-previous-like-this)
-         ("C-c M-." . mc/mark-all-like-this)))
+  :bind (("C->" . mc/mark-next-like-this)
+         ("C-<" . mc/mark-previous-like-this)
+         ("C-c C->" . mc/mark-all-like-this)))
 
 ;; Expand region
 (use-package expand-region
@@ -477,3 +500,12 @@
   (message "Ah, much better!"))
 
 ;;; init.el ends here
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(diff-refine-added ((t (:inherit diff-added :background "#4e4e4e"))))
+ '(idle-highlight ((t (:background "#4e4e4e"))))
+ '(linum ((t (:foreground "#555"))))
+ '(region ((t (:background "#4c4f52")))))

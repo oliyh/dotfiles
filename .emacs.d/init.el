@@ -169,7 +169,6 @@
 ;; Magit
 (use-package magit
   :ensure t
-  :pin melpa-stable
   :bind (("C-c C-g" . magit-status)
          ("C-c C-b" . magit-blame-mode))
   :config
